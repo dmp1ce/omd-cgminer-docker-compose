@@ -1,0 +1,23 @@
+- name: execute ansible drop-in playbook
+  hosts: all
+  tasks:
+  # Add a user to a password file and ensure permissions are set
+  - name: Change user passwords
+    htpasswd:
+      path: "/omd/sites/{{ item.name }}/etc/htpasswd"
+      name: omdadmin
+      password: "{{ item.password | default('password') }}"
+    with_items: "{{ sites }}"
+
+# - name: configure Sakuli extension
+#   become: yes
+#   become_user: "{{ SITENAME }}"
+#   become_method: "su"
+#   become_flags: "-"
+#   command: make "{{ item }}"
+#   with_items:
+#     - "gearman"
+#     - "grafana"
+#     - "screenshot_history"
+#   args:
+#     chdir: "$OMD_ROOT/share/sakuli/setup"

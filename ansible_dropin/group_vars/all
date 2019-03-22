@@ -1,0 +1,6 @@
+# Variables used to setup sites
+
+# Variables for demo site
+sites:
+  - name: "demo"
+    password: "password"

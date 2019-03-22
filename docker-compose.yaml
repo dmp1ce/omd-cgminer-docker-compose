@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  monitor:
+    build:
+      context: .
+    ports:
+      - "8443:443"
+    volumes:
+      - "./etc:/omd/sites/demo/etc.mount"
+      - "./local:/omd/sites/demo/local.mount"
+      - "./var:/omd/sites/demo/var.mount"
+      - "./ansible_dropin:/root/ansible_dropin"
